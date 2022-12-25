@@ -22,3 +22,12 @@ class SensorsRetrieveAPIView(generics.RetrieveAPIView):
 class SensorsCreateAPIView(generics.CreateAPIView):
     queryset = Sensors.objects.all()
     serializer_class = SensorsDetailSerializer
+
+class SensorsRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    lookup_field = "id"
+    queryset = Sensors.objects.all()
+    serializer_class = SensorsDetailSerializer
+
+class SensorsDestroyAPIView(generics.DestroyAPIView):
+    lookup_field = "id"
+    queryset = Sensors.objects.all()
