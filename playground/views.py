@@ -1,6 +1,6 @@
 # Create your views here.
 from rest_framework import generics
-from .serializers import SensorsListSerializer
+from .serializers import SensorsListSerializer, SensorsDetailSerializer
 from .models import Sensors
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -13,3 +13,8 @@ def say_hello(request):
 class SensorsListAPIView(generics.ListAPIView):
     queryset = Sensors.objects.all()
     serializer_class = SensorsListSerializer
+
+class SensorsRetrieveAPIView(generics.RetrieveAPIView):
+    lookup_field = "id"
+    queryset = Sensors.objects.all()
+    serializer_class = SensorsDetailSerializer
