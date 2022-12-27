@@ -1,4 +1,4 @@
-#from django.db import models
+from django.db import models
 from django.contrib.gis.db import models
 
 
@@ -10,7 +10,7 @@ class Sensors(models.Model):
     date = models.DateField()
     time = models.DateTimeField()
     measure = models.FloatField(max_length=10)
-    coordinates = models.PointField(srid=4326, null=True, blank=True)
+    coordinates = models.PointField(srid=4326, null=True, blank=True, )
     unit = models.CharField(max_length=10)
     user_id = models.CharField(max_length=200, blank=False)
 
