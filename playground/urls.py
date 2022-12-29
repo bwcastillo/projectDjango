@@ -7,5 +7,9 @@ urlpatterns = [
     path('<int:id>/', views.SensorsRetrieveAPIView.as_view(), name='sensors_detail'),
     path('create/', views.SensorsCreateAPIView.as_view(), name='sensors_create'),
     path('update/<int:id>/', views.SensorsRetrieveUpdateAPIView.as_view(), name='sensors_update'),
-    path('delete/<int:id>/', views.SensorsDestroyAPIView.as_view(), name='sensors_delete')
+    path('delete/<int:id>/', views.SensorsDestroyAPIView.as_view(), name='sensors_delete'),
+    path('home/', views.sensorpost, name="home"),
+    path('showform/', views.showform, name='showform'),
+    path('getform/', views.getform, name='getform'),
+
 ]
