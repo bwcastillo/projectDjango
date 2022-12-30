@@ -12,6 +12,7 @@ psycopg2 = "*"
 djangorestframework = "*"
 geos = "*"
 pillow = "*"
+djangorestframework-gis = "*"
 
 [dev-packages]
 

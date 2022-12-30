@@ -1,10 +1,11 @@
 # Create your views here.
 from rest_framework import generics
-from .serializers import SensorsListSerializer, SensorsDetailSerializer
+from .serializers import SensorsListSerializer, SensorsDetailSerializer,SensorsDetailLocationSerializer
 from .models import Sensors
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt #See what is this
+from rest_framework.parsers import JSONParser #See what is this
 
 def say_hello(request):
     #return HttpResponse('Hello World')
@@ -56,3 +57,17 @@ def getform(request):
         unit=request.POST['unit']
         user_id=request.POST['user_id']
     return HttpResponse("Sensor Type:{} Address:{} Date:{} Time:{} Measure:{} Unit:{} UserID:{}".format(sensor_type,address,date,time,measure,unit,user_id))
+
+def sensorLocation(request):
+    if request.method == 'GET':
+        snippets = Sensors.objects.all()
+        serializer = SensorsDetailLocationSerializer(snippets, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = SensorsDetailLocationSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, satus=201)
+        return JsonResponse(serializer.errors, status=400)

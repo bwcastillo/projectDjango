@@ -1,5 +1,7 @@
+#import rest_framework_gis.serializers
 from rest_framework import serializers
 from .models import Sensors
+from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
 class SensorsListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +27,9 @@ class SensorsDetailSerializer(serializers.ModelSerializer):
             "unit",
             "user_id"
         ]
+
+class SensorsDetailLocationSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = Sensors
+        geo_field = "coordinates"
+        fields = '__all__'

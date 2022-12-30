@@ -11,5 +11,6 @@ urlpatterns = [
     path('home/', views.sensorpost, name="home"),
     path('showform/', views.showform, name='showform'),
     path('getform/', views.getform, name='getform'),
+    path("sensor_location/", views.sensorLocation, name='sensorlocationapi'),
 
 ]
