@@ -32,4 +32,14 @@ class SensorsDetailLocationSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Sensors
         geo_field = "coordinates"
-        fields = '__all__'
+        fields = [
+            "id",
+            "sensor_type",
+            "address",
+            "date",
+            "time",
+            "measure",
+            "coordinates",
+            "unit",
+            "user_id"
+        ]
