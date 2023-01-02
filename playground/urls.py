@@ -12,5 +12,5 @@ urlpatterns = [
     path('showform/', views.showform, name='showform'),
     path('getform/', views.getform, name='getform'),
     path("sensor_location/", views.sensorLocation, name='sensorlocationapi'),
-
+    path(r'sensorupdatedelete/<int:pk>/', views.sensorUpdateDelete, name="sensor_updatedelete")
 ]

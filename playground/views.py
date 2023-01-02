@@ -1,5 +1,5 @@
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics, status
 from .serializers import SensorsListSerializer, SensorsDetailSerializer,SensorsDetailLocationSerializer
 from .models import Sensors
 from django.shortcuts import render
@@ -73,3 +73,22 @@ def sensorLocation(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+def sensorUpdateDelete(request, pk):
+    try:
+        tutorial = Sensors.objects.get(pk=pk)
+    except Sensors.DoesNotExist:
+        return JsonResponse({'message': 'The sensor does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = SensorsDetailLocationSerializer(tutorial, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        tutorial.delete()
+        return JsonResponse({'message': 'Sensor was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
