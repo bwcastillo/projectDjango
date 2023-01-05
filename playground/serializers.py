@@ -43,3 +43,12 @@ class SensorsDetailLocationSerializer(GeoFeatureModelSerializer):
             "unit",
             "user_id"
         ]
+
+class MarkerSerializer(GeoFeatureModelSerializer):
+    """Marker GeoJSON serializer."""
+    class Meta:
+        """Marker serializer meta class."""
+
+        fields = ("sensor_type")
+        geo_field = "coordinates"
+        model = Sensors

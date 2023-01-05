@@ -12,5 +12,6 @@ urlpatterns = [
     path('showform/', views.showform, name='showform'),
     path('getform/', views.getform, name='getform'),
     path("sensor_location/", views.sensorLocation, name='sensorlocationapi'),
-    re_path(r'^sensorupdatedelete/(?P<pk>[0-9]+)$', views.sensorUpdateDelete, name="sensor_updatedelete")
+    re_path(r'^sensorupdatedelete/(?P<pk>[0-9]+)$', views.sensorUpdateDelete, name="sensor_updatedelete"),
+    path("map/", views.MarkersMapView.as_view()),
 ]

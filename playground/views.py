@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt #See what is this
 from rest_framework.parsers import JSONParser #See what is this
+from django.views.generic.base import TemplateView
 
 
 
@@ -75,7 +76,7 @@ def sensorLocation(request):
         return JsonResponse(serializer.errors, status=400)
 
 @csrf_exempt
-def sensorUpdateDelete(request, pk):
+def sensorUpdateDelete(request, pk): #https://www.bezkoder.com/django-postgresql-crud-rest-framework/#Source_code
     try:
         tutorial = Sensors.objects.get(pk=pk)
     except Sensors.DoesNotExist:
@@ -92,3 +93,8 @@ def sensorUpdateDelete(request, pk):
     elif request.method == 'DELETE':
         tutorial.delete()
         return JsonResponse({'message': 'Sensor was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+    """Markers view."""
+class MarkersMapView(TemplateView):
+    """Markers map view."""
+    template_name = "map.html"
