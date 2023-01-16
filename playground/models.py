@@ -16,4 +16,4 @@ class Sensors(models.Model):
 
 
 def __str__(self):
-    return "{}, {}".format(self.user_id, self.address)
+    return "{}, {}".format(self.user_id, self.address) #It allows to show clearly in app about the details
