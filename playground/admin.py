@@ -8,9 +8,9 @@ from .models import Sensors
 from django.contrib.auth.models import User
 
 from django.contrib.auth.admin import UserAdmin
-@admin.register(User)
-class NewAdmin(UserAdmin):
-    pass
+#@admin.register(User)
+#class NewAdmin(UserAdmin):
+#    pass
 
 class LocationAdmin(admin.GeoModelAdmin):
     point_zoom = 3 #https://stackoverflow.com/questions/61611292/how-to-change-the-default-zoom-level-of-a-map-in-geodjangos-admin
